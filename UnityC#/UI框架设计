@@ -1,0 +1,40 @@
+UI框架
+
+	需求
+
+		1.UI窗口（Canvas）的统一管理（记录，提供显隐功能）。
+		2.UI事件管理
+
+
+
+
+
+	UI结构
+
+		-跟物体>			   管理类。管理窗口	[UIManager]
+			-窗口>         需要一个窗口父类（基类）代表所有窗口 [UIWindow]
+		  		-交互元素   UIEventListener
+
+
+
+	核心类
+
+		1.UI管理类 [UIManager] ：管理窗口（记录，禁用，查找）
+
+		2.UI窗口类 [UIWindow]  :所有UI窗口的基类。代表所有窗口（概念继承，以层次和方式管理）。定义所有窗口共有行为（显隐，获取监听器）		
+		3.UI事件监听器 [UIEventListener]：负责提供当前UI所有事件（带事件参数类）
+
+	辅助类
+		1.游戏主窗口 [UIMainWindow] ：附加到主窗口中，负责处理主窗口逻辑
+		2.游戏控制器 [GameController] ：负责处理游戏流程，例如游戏开始前显示主窗口
+
+
+	使用方法
+		1.定义xxxxWindow类继承自UIWindow。负责处理该窗口逻辑
+			通过GetUIEventListener方法获取需要交互的UI元素。
+
+		2.如何访问窗口成员
+			通过UIManager.Instance.GetWindow<窗口类>().方法
+
+
+	类图

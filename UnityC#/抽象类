@@ -1,0 +1,12 @@
+//依赖倒置
+
+//关键字 "abstract"
+
+//定义抽象类  可以有静态，实例成员（字段，属性，方法，构造函数）
+public abstract class Transportation
+{
+	//抽象方法，必须在抽象类中。抽象方法不代表具体功能。推迟给子类，必须实现
+	public abstract void Transport();
+	//虚方法，子类可选择实现，本类可以实现。
+	public virtual void Transport();
+}
