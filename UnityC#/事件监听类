@@ -1,0 +1,35 @@
+解决：定义事件监听类，提供所有UGUI事件（带事件参数）
+
+核心思想： 继承事件接口
+
+事件种类待完善
+
+
+public class UIEventListener,IPointerDownHandle,IPointerClickHandler,IPointUpHandler
+{
+	//定义委托数据类型
+	public delegate void PointerEventHandle(PointerEventData eventData);
+	//声明事件
+	public event  PointerEventHandle PointerClick;
+	public event  PointerEventHandle PointerDown;
+	public event  PointerEventHandle PoinertUp;
+
+
+
+	public void OnPointerClick(PointerEventData eventData)
+	{
+		if(PointerClick != null) PointerDown(eventData);
+	}
+
+	public void OnPointerDown(PointerEventData eventData)
+	{
+		if(PointerDown != null) PointerDown(eventData);
+	}
+
+	public void OnPointerUp(PointerEventData eventData)
+	{
+		if(PoinertUp != null) PoinertUp(eventData);
+	}
+}
+
+

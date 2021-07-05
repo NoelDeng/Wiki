@@ -1,0 +1,55 @@
+定义
+	动态获取类型信息，动态创建dioxin，动态访问成员的过程。
+
+
+作用
+	在编译时无法了解类型，在运行时获取类型信息，创建对象，访问成员。
+
+
+流程
+	1.得到数据类型
+	2.动态创建对象
+	3.查看类型信息（了解本身信息，成员信息）
+
+
+常用类
+	1.取得数据类型Type
+	方式一：Type.GetType("类型全名")
+		适合于已知类型名称
+
+	方式二：obj.GetType();
+		适合于未知类型名称，未知类型，存在已有对象
+
+	方式三：typeof(类型)
+		适合于已知类型
+
+	方式四: Assembly.Load("xxx").GetType("名字")
+		适合于类型在另一个程序集中
+
+
+
+
+	Type类常用Get系列方法ls系列属性
+	2.Methodinfo(方法)
+		重要方法：invoke
+
+	3.PropertyInfo(属性)
+		重要方法：SetValue GetValue
+
+	4.FieldInfo(字段)
+		重要方法：SetValue GetValue
+
+	5.ConstructInfo(构造方法)
+		重要方法：Invoke
+
+
+动态创建
+
+	Activator.CreatrInstance(string 程序集名称,string 类型全名)
+	Activator.CreatrInstance(Type type);
+
+	Assembly assembly = Assembly.Load(程序集)；
+	assembly.CreateInstance(Type);
+
+	//找到由参构造方法，动态调用构造方法。
+	type.GetConstructor(typeof(string)).Invoke();

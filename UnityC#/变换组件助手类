@@ -1,0 +1,36 @@
+
+核心思想：
+	在子物体中查找。
+	如果没有找到，则讲任务交给子物体
+
+///
+///变换组件助手类
+///
+public static class TransformHelper
+{
+	///
+	///未知层级查找后代自定名称的变换组件
+	///返回变换组件
+	///参数中的 “this” 用法---C#的拓展方法： 再不修改代码的情况下，为其增加新的功能
+	///但是还不会改变微软的数组类，为他增加新方法。
+	///三要素
+	///1.拓展方法所在的类必须是静态类
+	///2.再第一个参数上，使用this关键字修饰被拓展的类型
+	///3.在另一个命名空间下
+	///作用： 让调用者方便掉用该方法（就好像在调用自身的类型方法一样）
+	///语法：被拓展类型.方法名
+	///
+	public static Transform FindChildByName(this Transform currentTF,string childName)
+	{
+		//递归：方法内部又调用自身
+		Transform childTF = currentTF.Find(childName);
+		if(childTF!=null) return childTF;
+		for (int i = 0; i < currentTF.childCount; i++)
+		{
+			childTF=FindChildByName(currentTF.GetChild(i),childName);
+			if(childTF!=null) return childTF;
+		}
+
+	}
+	return null
+}

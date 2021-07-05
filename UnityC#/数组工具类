@@ -1,0 +1,37 @@
+数组助手类：主要对数组的一些改造和操作
+使用方法
+public static class ArrayHelper
+{
+	//7个方法：1.查找。2.查找所有满足条件的对象。3.升序排序。4.降序排序。5.最大值。6.最小值。7.筛选
+
+	///
+	///查找满足条件的单个元素
+	///T数组类型
+	///array数组
+	///condition 查找条件
+	///返回对象
+	public static T Find<T>(T[] array,Func<T,bool> condition)
+	{
+		for(int i=0; i<array.Length； i++)
+		{
+			if(condition(array[i])) return array[i];
+		}
+		return default(T);
+	}
+
+	///
+	///查找满足条件的所有元素
+	///T数组类型
+	///array数组
+	///condition 查找条件
+	///返回对象
+	public static T[] FindAll<T>(T[] array,Func<T,bool> condition)
+	{
+		List<T> list =new List<T>();
+		for(int i=0; i<array.Length； i++)
+		{
+			if(condition(array[i])) list.add(array[i]);
+		}
+		return list.ToArray();
+	}
+}

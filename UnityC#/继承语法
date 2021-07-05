@@ -1,0 +1,37 @@
+详情分析图请看 继承内存图
+父类 Person
+子类 Student，Teacher：Person
+
+
+static void Main(string[] args)
+{
+	//方法执行在栈中
+	//所以方法内部生命的变量都是栈中
+	// = new Person()是引用类型，数据存储在堆中
+	
+	//夫类型引用 指向 夫类型的对象
+	//现象：只能访问夫类型成员
+	Person p1 =new Person();
+
+	//子类型引用 指向 子类型的对象
+	//语法现象：能访问父类成员，也可访问子类成员
+	Student s2 = new Student();
+
+
+	//父类型引用 指向 子类型对象
+	//现象：s受类型制约 只能访问夫类型成员
+	Person p3= new Student();
+	//如果需要访问子类成员，需要将引用数据类型进行转换（向下转型）
+	Student s4 = p3 as Student;
+
+	// as 转换失败结果为null
+	Teacher t5 = p3 as Teacher；
+	//t5.Salary = 10000;   // 运行结果：null.Salary [异常]
+
+	//不存在子类型的引用指向夫类型的对象
+	//Student s3 = new Person();
+
+	//结论：可以访问什么成员，取决于引用的类型。
+
+	int a;
+}

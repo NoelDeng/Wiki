@@ -1,0 +1,16 @@
+//可以被foreach的条件
+foreach(var item in hand)
+{
+	
+}
+
+foreach的原理
+1.获取迭代器
+IEnumerator iterator = hand.GetEnumerator();
+2.移动到下一个元素
+while(iterator.MoveNext())
+{
+	3.获取元素
+	iterator.Current
+}
+

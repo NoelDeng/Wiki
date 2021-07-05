@@ -1,0 +1,31 @@
+Unity协同程序（Coroutine）
+
+定义
+	具有多个返回点（yield），可以再特定时机部分执行的函数。
+
+原理
+	unity每帧处理GameObject中的协同函数，直到函数执行完毕。
+	当一个协程函数启动时，本质创建迭代器对象。调用MoveNext方法，执行到yield暂时退出。待满足条件后再次调用MoveNext方法执行后续代码，直到遇到下一个yield为止。如此循环至整个函数结束。
+
+语法
+	通过MonoBehaviour中的StartCoroutine方法启动，StopCoroutine方法停止。
+	协程函数返回值类型为IEnumerator，方法体中通过yield 关键字定义返回点，通过return xx对象定义继续执行的条件。
+	可以被yield return的对象：
+		1.null 或数字   在Update后执行，适合分解耗时的逻辑处理。
+		2.WaitForFixedUpdate  在FixedUpdate后执行，适合分解物理操作。
+		3.WaitForSeconds  在指定时间后执行，适合延迟调用。
+		  WaitForSecondsRealtime  同上，不受时间缩放影响。
+		4.WaitForEndOfFrame 在每帧结束后执行，适合相机的跟随操作。
+		5.Coroutine  在另一个协程执行完毕后 再执行。
+		6.WaitUntil  在委托返回Truw时执行，适合等待某一操作。
+		6.WaitWhile  在委托返回false时执行，适合等待某一操作。
+		7WWW 在请求结束后执行，适合加载数据，如文件，贴图，材质等。
+
+
+作用
+
+
+
+提示
+
+yield return new WaitForFixedUpdate();  物理帧执行 固定时间0.02s   适合做角色运动旋转等物理操作
